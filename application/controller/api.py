@@ -97,7 +97,7 @@ create_LikedShows_parser.add_argument("show_id")
 
 @app.route("/api/liked_shows", methods=["POST"])
 @jwt_required()
-def new_liked_show():
+def like_show():
     user_id = get_jwt_identity()
 
     args = create_LikedShows_parser.parse_args()
@@ -110,13 +110,16 @@ def new_liked_show():
     liked_show = db.session.query(LikedShows).filter(LikedShows.show_id == show_id and LikedShows.user_id == user_id).first()
 
     if liked_show is not None:
-        return jsonify({"msg": "Show already exists"}), 400
+        db.session.delete(liked_show)
+        db.session.commit()
+        return jsonify({"msg": "Liked show deleted"}), 201
+        
+    else:
+        new_liked_show = LikedShows(user_id=user_id, show_id=show_id)
+        db.session.add(new_liked_show)
+        db.session.commit()
 
-    new_liked_show = LikedShows(user_id=user_id, show_id=show_id)
-    db.session.add(new_liked_show)
-    db.session.commit()
-
-    return jsonify({"msg": "New liked show created"}), 201
+        return jsonify({"msg": "New liked show created"}), 201
 
 
 
