@@ -1,4 +1,5 @@
 import os
+from datetime import timedelta
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 class Config():
@@ -7,7 +8,9 @@ class Config():
     SQLALCHEMY_DATABASE_URI = None
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     WTF_CSRF_ENABLED = False
-    SECURITY_TOKEN_AUTHENTICATION_HEADER = "Authentication-Token"
+    # SECURITY_TOKEN_AUTHENTICATION_HEADER = "Authentication-Token"
+    JWT_SECRET_KEY = os.environ.get('MY_SECRET_KEY')
+    JWT_ACCESS_TOKEN_EXPIRES = timedelta(hours=9999)
 
 class LocalDevelopmentConfig(Config):
     DEBUG = True

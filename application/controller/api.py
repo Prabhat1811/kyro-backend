@@ -8,9 +8,11 @@ from flask_security import auth_required, login_required, auth_token_required, c
 from main import app, jwt
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 import uuid
+from flask_cors import cross_origin
 
 
 @app.route('/api/user/register', methods=['POST'])
+@cross_origin()
 def register():
     email = request.json.get("email", None)
     password = request.json.get("password", None)
@@ -31,6 +33,7 @@ def register():
 
 
 @app.route("/api/user/login", methods=["POST"])
+@cross_origin()
 def login():
     email = request.json.get("email", None)
     password = request.json.get("password", None)
@@ -54,6 +57,7 @@ output_fields_userAPI = {
 
 @app.route("/api/user", methods=["GET"])
 @jwt_required()
+@cross_origin()
 def get_user_email():
 
     user_id = get_jwt_identity()
@@ -74,6 +78,7 @@ output_fields_LikedShowsAPI = {
 
 @app.route("/api/liked_shows", methods=["GET"])
 @jwt_required()
+@cross_origin()
 def get_liked_shows():
     user_id = get_jwt_identity()
     
@@ -93,6 +98,7 @@ create_LikedShows_parser.add_argument("show_id")
 
 @app.route("/api/liked_shows", methods=["POST"])
 @jwt_required()
+@cross_origin()
 def new_liked_show():
     user_id = get_jwt_identity()
 
@@ -123,6 +129,7 @@ output_fields_HistoryAPI = {
 
 @app.route("/api/history", methods=["GET"])
 @jwt_required()
+@cross_origin()
 def get():
 
     user_id = get_jwt_identity()
@@ -143,6 +150,7 @@ create_history_parser.add_argument("show_id")
 
 @app.route("/api/history", methods=["POST"])
 @jwt_required()
+@cross_origin()
 def post():
 
     user_id = get_jwt_identity()
@@ -167,6 +175,7 @@ def post():
 
 @app.route("/api/history", methods=["DELETE"])
 @jwt_required()
+@cross_origin()
 def delete():
 
     user_id = get_jwt_identity()

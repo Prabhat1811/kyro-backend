@@ -4,10 +4,6 @@ from flask_restful import Resource, Api
 from application import config
 from application.config import LocalDevelopmentConfig, TestingConfig, Production
 from application.data.database import db
-from flask_login import LoginManager
-from flask_security import utils
-from flask_sse import sse
-from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 
 app = None
@@ -15,8 +11,6 @@ api = None
 
 def create_app():
     app = Flask(__name__, template_folder="templates")
-    # CORS(app, resources={r"/api/*": {"origins": "*"}})
-    CORS(app)
 
     # if os.getenv('ENV', "development") == "development":
     #     app.config.from_object(LocalDevelopmentConfig)
