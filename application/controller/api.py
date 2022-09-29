@@ -21,7 +21,7 @@ def register():
 
     user = db.session.query(User).filter(User.email == email).first()
     if user:
-        raise BusinessValidationError(status_code=400, error_code="BE2001", error_message="A User with this email id already exists")
+        return jsonify({"msg": "A User with this email id already exists"}), 400
 
     hashed = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
     new_user = User(id=str(uuid.uuid4()), email=email, password=hashed)
@@ -157,7 +157,7 @@ def post():
 
     history = db.session.query(History).filter(History.show_id == show_id and History.user_id == user_id).first()
     if history is not None:
-        raise BusinessValidationError(status_code=400, error_code="BE2005", error_message="Show already exists")
+        return jsonify({"msg": "Show already exists"}), 400
 
     new_history = History(user_id=user_id, show_id=show_id)
     db.session.add(new_history)
