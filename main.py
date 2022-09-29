@@ -16,6 +16,7 @@ api = None
 def create_app():
     app = Flask(__name__, template_folder="templates")
     # CORS(app, resources={r"/api/*": {"origins": "*"}})
+    CORS(app)
 
     # if os.getenv('ENV', "development") == "development":
     #     app.config.from_object(LocalDevelopmentConfig)
