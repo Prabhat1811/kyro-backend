@@ -16,6 +16,9 @@ def register():
     email = request.json.get("email", None)
     password = request.json.get("password", None)
 
+    if email is None or email == "":
+        return jsonify({"msg": "Email is required"}), 401
+
     if len(password) < 8:
         return jsonify({"msg": "Password should be al least 8 characters long"}), 401
 
