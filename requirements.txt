@@ -1,0 +1,11 @@
+Flask
+Flask-SQLAlchemy==2.5.1
+werkzeug
+flask-security-too
+flask_restful
+flask-sse
+flask-cors
+gunicorn
+gevent
+flask-jwt-extended
+bcrypt
