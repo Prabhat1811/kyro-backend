@@ -5,17 +5,15 @@ from application import config
 from application.config import LocalDevelopmentConfig, TestingConfig, Production
 from application.data.database import db
 from flask_jwt_extended import JWTManager
+from flask_cors import CORS
 
 app = None
 api = None
 
 def create_app():
     app = Flask(__name__, template_folder="templates")
+    CORS(app)
 
-    # if os.getenv('ENV', "development") == "development":
-    #     app.config.from_object(LocalDevelopmentConfig)
-    # elif os.getenv('ENV', "development") == 'testing':
-    #     app.config.from_object(TestingConfig)
     app.config.from_object(Production)
 
     db.init_app(app)
