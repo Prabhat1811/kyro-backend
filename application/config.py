@@ -48,3 +48,5 @@ class Production(Config):
     SECURITY_SEND_REGISTER_EMAIL = False
     SECURITY_UNAUTHORIZED_VIEW = None
     CORS_HEADERS = 'Content-Type'
+    JWT_SECRET_KEY = os.environ.get('MY_SECRET_KEY')
+    JWT_ACCESS_TOKEN_EXPIRES = timedelta(hours=9999)
