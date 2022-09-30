@@ -20,7 +20,7 @@ def register():
         return jsonify({"msg": "Email is required"}), 401
 
     if len(password) < 8:
-        return jsonify({"msg": "Password should be al least 8 characters long"}), 401
+        return jsonify({"msg": "Password should be at least 8 characters long"}), 401
 
     user = db.session.query(User).filter(User.email == email).first()
     if user:
@@ -113,7 +113,7 @@ def like_show():
         db.session.delete(liked_show)
         db.session.commit()
         return jsonify({"msg": "Liked show deleted"}), 201
-        
+
     else:
         new_liked_show = LikedShows(user_id=user_id, show_id=show_id)
         db.session.add(new_liked_show)
