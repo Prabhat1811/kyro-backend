@@ -41,7 +41,7 @@ def login():
 
     user = db.session.query(User).filter(User.email == email).first()
     if not user:
-        return jsonify({"msg": "User not found"}), 401
+        return jsonify({"msg": "Bad email or password"}), 401
 
     if bcrypt.checkpw(password.encode('utf-8'), user.password):
         access_token = create_access_token(identity=user.id)
