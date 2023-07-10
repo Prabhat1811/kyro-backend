@@ -2,7 +2,7 @@ from .database import db
 from sqlalchemy.sql import func
 
 
-class User(db.Model, UserMixin):
+class User(db.Model):
     __tablename__ = 'user'
     id = db.Column(db.String, primary_key=True)
     email = db.Column(db.String, nullable=False, unique=True)
