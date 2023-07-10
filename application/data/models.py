@@ -1,6 +1,4 @@
 from .database import db
-from flask_login import login_manager
-from flask_security import UserMixin, RoleMixin
 from sqlalchemy.sql import func
 
 
