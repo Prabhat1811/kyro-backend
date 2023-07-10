@@ -1,10 +1,9 @@
-from flask_restful import Resource, Api, fields, marshal_with, reqparse, marshal
+from flask_restful import fields, reqparse, marshal
 from application.utils.validation import *
 from application.data.database import db
 from application.data.models import *
 import bcrypt
-from flask import abort, request, jsonify
-from flask_security import auth_required, login_required, auth_token_required, current_user, logout_user
+from flask import request, jsonify
 from main import app, jwt
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 import uuid
