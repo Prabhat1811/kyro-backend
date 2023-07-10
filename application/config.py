@@ -8,8 +8,7 @@ class Config():
     SQLALCHEMY_DATABASE_URI = None
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     WTF_CSRF_ENABLED = False
-    # SECURITY_TOKEN_AUTHENTICATION_HEADER = "Authentication-Token"
-    JWT_SECRET_KEY = os.environ.get('MY_SECRET_KEY')
+    JWT_SECRET_KEY = os.getenv('MY_SECRET_KEY')
     JWT_ACCESS_TOKEN_EXPIRES = timedelta(hours=9999)
 
 class LocalDevelopmentConfig(Config):
@@ -17,9 +16,9 @@ class LocalDevelopmentConfig(Config):
     SQLITE_DB_DIR = os.path.join(basedir, "../db_directory")
     SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.join(SQLITE_DB_DIR, "testdb.sqlite3")
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SECRET_KEY = os.environ.get('MY_SECRET_KEY')
+    SECRET_KEY = os.getenv('MY_SECRET_KEY')
     SECURITY_PASSWORD_HASH = "bcrypt"
-    SECURITY_PASSWORD_SALT = os.environ.get('SECURITY_PASSWORD_SALT')
+    SECURITY_PASSWORD_SALT = os.getenv('SECURITY_PASSWORD_SALT')
     SECURITY_REGISTERABLE = True
     SECURITY_SEND_REGISTER_EMAIL = False
     SECURITY_UNAUTHORIZED_VIEW = None
@@ -27,9 +26,9 @@ class LocalDevelopmentConfig(Config):
 class TestingConfig(Config):
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = "sqlite:///:memory:"
-    SECRET_KEY = os.environ.get('MY_SECRET_KEY')
+    SECRET_KEY = os.getenv('MY_SECRET_KEY')
     SECURITY_PASSWORD_HASH = "bcrypt"
-    SECURITY_PASSWORD_SALT = os.environ.get('SECURITY_PASSWORD_SALT')
+    SECURITY_PASSWORD_SALT = os.getenv('SECURITY_PASSWORD_SALT')
     SECURITY_REGISTERABLE = True
     SECURITY_SEND_REGISTER_EMAIL = False
     SECURITY_UNAUTHORIZED_VIEW = None
@@ -40,13 +39,13 @@ class Production(Config):
     SQLITE_DB_DIR = os.path.join(basedir, "../db_directory")
     SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.join(SQLITE_DB_DIR, "testdb.sqlite3")
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SECRET_KEY = os.environ.get('MY_SECRET_KEY')
-    JWT_SECRET_KEY = os.environ.get('MY_SECRET_KEY')
+    SECRET_KEY = os.getenv('MY_SECRET_KEY')
+    JWT_SECRET_KEY = os.getenv('MY_SECRET_KEY')
     SECURITY_PASSWORD_HASH = "bcrypt"
-    SECURITY_PASSWORD_SALT = os.environ.get('SECURITY_PASSWORD_SALT')
+    SECURITY_PASSWORD_SALT = os.getenv('SECURITY_PASSWORD_SALT')
     SECURITY_REGISTERABLE = True
     SECURITY_SEND_REGISTER_EMAIL = False
     SECURITY_UNAUTHORIZED_VIEW = None
     CORS_HEADERS = 'Content-Type'
-    JWT_SECRET_KEY = os.environ.get('MY_SECRET_KEY')
+    JWT_SECRET_KEY = os.getenv('MY_SECRET_KEY')
     JWT_ACCESS_TOKEN_EXPIRES = timedelta(hours=9999)
