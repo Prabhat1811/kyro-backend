@@ -1,5 +1,5 @@
 Flask
-Flask-SQLAlchemy==2.5.1
+Flask-SQLAlchemy==1.0.0
 werkzeug
 flask-security-too
 flask_restful
