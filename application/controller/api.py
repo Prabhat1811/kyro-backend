@@ -10,7 +10,7 @@ import uuid
 from flask_cors import cross_origin
 
 
-@app.route('', methods=['GET'])
+@app.route('/', methods=['GET'])
 def register():
     return jsonify({'message': 'Hi!'})
 
