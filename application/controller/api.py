@@ -11,7 +11,7 @@ from flask_cors import cross_origin
 
 
 @app.route('/', methods=['GET'])
-def register():
+def hello():
     return jsonify({'message': 'Hi!'})
 
 
