@@ -10,6 +10,11 @@ import uuid
 from flask_cors import cross_origin
 
 
+@app.route('', methods=['GET'])
+def register():
+    return jsonify({'message': 'Hi!'})
+
+
 @app.route('/api/user/register', methods=['POST'])
 def register():
     email = request.json.get("email", None)
